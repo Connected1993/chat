@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <style>
+    form {
+      max-width: 300px;
+      display: flex;
+      row-gap: 5px;
+      flex-direction: column;
+    }
+
+    input {
+      width: 100%;
+    }
+  </style>
+
+  <body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- АВТОРИЗАЦИЯ  -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <form class="form-horizontal" id="authorization">
+            <span id="authorization" class="heading">АВТОРИЗАЦИЯ</span>
+            <div class="form-group">
+              <input
+                autocomplete="off"
+                type="text"
+                name="login"
+                minlength="4"
+                maxlength="16"
+                required
+                placeholder="login"
+                class="form-control"
+                placeholder="E-mail"
+              />
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group help">
+              <input
+                autocomplete="off"
+                type="password"
+                name="password"
+                minlength="8"
+                required
+                placeholder="input password"
+                class="form-control"
+                placeholder="Password"
+              />
+              <i class="fa fa-lock"></i>
+              <a href="#" class="fa fa-question-circle"></a>
+            </div>
+            <div class="form-group">
+              <div class="main-checkbox">
+                <input
+                  type="checkbox"
+                  value="none"
+                  id="checkbox1"
+                  name="check"
+                />
+                <label for="checkbox1"></label>
+              </div>
+              <span class="text">Запомнить</span>
+              <button
+                type="submit"
+                onclick="authorization()"
+                class="btn btn-default"
+              >
+                ВХОД
+              </button>
+            </div>
+            <a href="#" onclick="showForm('registration')"
+              >Зарегистрироваться?</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- РЕГИСТРАЦИЯ  -->
+    <div class="container">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <form class="form-horizontal d-none" id="registration">
+              <span id="authorization" class="heading">Регистрация</span>
+              <div class="form-group">
+                
+                <input
+                  autocomplete="off"
+                  type="text"
+                  name="email"
+                  minlength="4"
+                  maxlength="16"
+                  required
+                  placeholder="email"
+                  class="form-control"
+                />
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="form-group help">
+                <input
+                  autocomplete="off"
+                  type="password"
+                  name="password"
+                  minlength="8"
+                  required
+                  placeholder="input password"
+                  class="form-control"
+                  placeholder="Password"
+                />
+                <hr>
+                <input
+                autocomplete="off"
+                type="password"
+                name="confirmPassword"
+                minlength="8"
+                required
+                placeholder="repeat the password"
+                class="form-control"
+                placeholder="confirmPassword"
+              />
+                <i class="fa fa-lock"></i>
+                <a href="#" class="fa fa-question-circle"></a>
+              </div>
+              <div class="form-group">
+                <button
+                  type="submit"
+                  onclick="registration()"
+                  class="btn btn-default"
+                    >Регистрация</button> 
+              </div>
+              <a href="#" onclick="showForm('authorization')" type="submit"
+            value="Зарегистрироваться">Авторизация</a>
+            </form>
+          </div>
+        </div>
+      </div>      
+</div>
+      </div>
+      </div>
+
+      </form>
+
+  
+     
+    <div class="chat d-none">
+      <div class="chat__body d-flex flex-column"></div>
+      <hr style="margin-top: 0; margin-bottom: 0;"/>
+      <div class="chat__panel d-flex">
+        <div class="chat__message" contenteditable="true">
+        </div>
+        <span class="error d-none"></span>
+        <div class="chat__send">
+          <div class="chat__emodji">
+             <span onclick="window._chat.addEmodji('😀')">😀</span>
+             <span onclick="window._chat.addEmodji('🤓')">🤓</span>
+          </div>
+          <button onclick="window._chat.sendMessage()" type="button" class="btn btn-info">Отправить</button>
+        </div>
+      </div>
+    </div>
+
+    <template id="message-1">
+      <div class="chat__item d-flex flex-end align-items-end">
+        <div class="chat__text">
+          TESTTESTTESTTESTTESTTES<br />
+          TTESTTESTTESTTESTTESTTESTTEST<br />
+          TESTTESTTESTTESTTESTTE<br />
+          STTESTTESTTESTTESTTEST<br />
+          TESTTESTTESTTEST<br />
+        </div>
+        <div style="text-align: right">
+          <img class="chat__avatar" src="batman.svg" />
+          <div class="chat__login">Admin</div>
+          <div class="chat__time"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="message-2">
+      <div class="chat__item d-flex align-items-end">
+        <div>
+          <img class="chat__avatar" src="joker.png" />
+          <div class="chat__login">User</div>
+          <div class="chat__time"></div>
+        </div>
+        <div class="chat__text">
+          111111111111111111111<br />
+          ffffffffffffffffffff<br />
+          aaaaaaaaaaaaaaaaaa<br />
+          STTESTTESTTESTTESTTEST<br />
+          TESTTESTTESTTEST<br />
+        </div>
+      </div>
+    </template>
+  </body>
+  <script>
+    // при загрузки страницы
+    window.onload = () => {
+      // если есть логин
+      if (getUserName()) {
+        // скрываем формы
+        hideForms();
+        // отображаем чат
+        document.querySelector(".chat")?.classList.remove("d-none");
+      }
+    };
+    function hideForms() {
+      // находим все теги с названием form
+      // перебераем массив
+      // где берем каждую найденную форму и добавляем ей класс d-none
+      document
+        .querySelectorAll("form")
+        .forEach((form) => form?.classList.add("d-none"));
+    }
+
+    function showForm(id = "") {
+      hideForms();
+      // отоборажаем форму по id
+      document.getElementById(id)?.classList.remove("d-none");
+    }
+
+    // функция возвращает имя пользователя
+    function getUserName() {
+      return JSON?.parse(localStorage.getItem("user"))?.login;
+    }
+
+    function getUserId() {
+      return JSON?.parse(localStorage.getItem("user"))?.userId;
+    }
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <script defer src="/js/md5.js"></script>
+  <script defer src="/js/api.js"></script>
+  <script defer src="/js/chat.js" type="module"></script>
+
+</html>
